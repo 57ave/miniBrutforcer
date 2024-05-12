@@ -1,12 +1,16 @@
 # miniBrutforcer
-bruteforcer implementation in go
+bruteforcer implementation in go using goroutine
 
 ### Server
-A http server is provided just :
-```cd httpServer```
-```go run httpServer.go```
+  A http server is provided just :
+
+  first : ```cd httpServer```
+
+  then : ```go run httpServer.go```
 
 ### Brutforcer
-to run the program :
-``` cd miniBrutforcer```
-``` go run *.go```
+  to run the program :
+
+  first : ```cd miniBrutforcer```
+  
+  then : ```go run *.go```
