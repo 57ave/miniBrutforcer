@@ -1,5 +1,5 @@
 # miniBrutforcer
-bruteforcer implementation in go using goroutine
+a poc for bruteforcer implementation in go using goroutine
 
 ### Server
   A http server is provided just :
