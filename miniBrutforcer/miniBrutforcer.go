@@ -38,31 +38,26 @@ func queryExecute(path string, key string, value string, method string) {
   fmt.Println(string(body))
 }
 
-func executeQueryFromFile(filePathPromise chan string) {
-  for filePath := range filePathPromise {
-    dataTab := GetFileContent(filePath)
-    for i := 0 ; i < len(dataTab) ; i++ {
-      splitData := strings.Split(dataTab[i], "=")
-      queryExecute("/admin", splitData[0], splitData[1], "POST")
+func executeQueryFromFile(filePathQuery []string, filePathRoot chan string) {
+  for eachtask := range filePathRoot {
+    for i := 0 ; i < len(filePathQuery) ; i++ {
+      splitData := strings.Split(filePathQuery[i], "=")
+      queryExecute(eachtask, splitData[0], splitData[1], "POST")
     }
   }
 }
 
 func main() {
-  filePathTab := []string{
-    "./wordList/query1.csv",
-    "./wordList/query2.csv",
-    "./wordList/query3.csv",
-    "./wordList/query4.csv",
-  }
+  filePathTab := "./wordList/query1.csv"
   channel := make(chan string)
+  data_tab := GetFileContent("./wordList/rootList")
 
-  for i := 0; i < 2; i++ {
-		go executeQueryFromFile(channel)
+  for i := 0 ;i < len(data_tab); i++ {
+		go executeQueryFromFile(GetFileContent(filePathTab), channel)
 	}
 
-  for i := 0; i < len(filePathTab); i++ {
-    channel <- filePathTab[i]
+  for i := 0; i < len(data_tab); i++ {
+    channel <- data_tab[i]
   }
   time.Sleep(1 * time.Second)
   close(channel)
