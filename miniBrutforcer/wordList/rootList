@@ -1,4 +1,4 @@
-/root
-/admin
-/user
-/protect
+/root;
+/admin;
+/user;
+/protect;
