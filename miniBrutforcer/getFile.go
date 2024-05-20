@@ -12,7 +12,7 @@ func GetFileContent(filePath string) []string{
     if err != nil {
         log.Fatalf("unable to read file: %v", err)
     }
-	dataTab := strings.Split(string(body), ";")
+	dataTab := strings.Split(string(body), ";\n")
     fmt.Println(dataTab[0])
 	return dataTab
 }
